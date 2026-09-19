@@ -19,7 +19,15 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   return (
     <html lang="en">
-      <body className={`${jetbrainsMono.className} antialiased`}>
+      <body className=
+      {`
+        ${jetbrainsMono.className} antialiased
+        bg-white dark:bg-black
+      `}
+      >
+
+        <div className="fixed inset-0 z-[-1] bg-grid-pattern pointer-events-none" />
+
         <main>{children}</main>
       </body>
     </html>

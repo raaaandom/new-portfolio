@@ -1,6 +1,7 @@
 import { getPayload } from 'payload';
 import configPromise from '@payload-config';
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 
 export default async function DynamicLinkPage({ params }: { params: { slug: string } }) {
   const { slug } = await params;
@@ -24,7 +25,6 @@ export default async function DynamicLinkPage({ params }: { params: { slug: stri
     <main className="
       flex flex-col items-center justify-center
       min-h-screen p-6
-      bg-white dark:bg-black
       select-none"
     >
 
@@ -39,7 +39,7 @@ export default async function DynamicLinkPage({ params }: { params: { slug: stri
 
       <div className="flex flex-col w-full max-w-md">
         {pageData.links?.map((link, index) => (
-          <a 
+          <Link
             key={index} 
             href={link.dest}
             className="
@@ -56,7 +56,7 @@ export default async function DynamicLinkPage({ params }: { params: { slug: stri
             {
               index === pageData.links!.length - 1 ? '└─ ' : '├─ '} {link.title
             }
-          </a>
+          </Link>
         ))}
       </div>
       
