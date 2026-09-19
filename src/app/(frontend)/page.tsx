@@ -1,59 +1,50 @@
-import { headers as getHeaders } from 'next/headers.js'
-import Image from 'next/image'
-import { getPayload } from 'payload'
-import React from 'react'
-import { fileURLToPath } from 'url'
+import { getPayload } from 'payload';
+import configPromise from '@payload-config';
 
-import config from '@/payload.config'
-import './styles.css'
+export default async function LinkTreePage() {
+  const payload = await getPayload({ config: configPromise });
 
-export default async function HomePage() {
-  const headers = await getHeaders()
-  const payloadConfig = await config
-  const payload = await getPayload({ config: payloadConfig })
-  const { user } = await payload.auth({ headers })
-
-  const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
+  const homePageData = await payload.findGlobal({
+    slug: 'home-page',
+  });
 
   return (
-    <div className="home">
-      <div className="content">
-        <picture>
-          <source srcSet="https://raw.githubusercontent.com/payloadcms/payload/3.x/packages/ui/src/assets/payload-favicon.svg" />
-          <Image
-            alt="Payload Logo"
-            height={65}
-            src="https://raw.githubusercontent.com/payloadcms/payload/3.x/packages/ui/src/assets/payload-favicon.svg"
-            width={65}
-          />
-        </picture>
-        {!user && <h1>Welcome to your new project.</h1>}
-        {user && <h1>Welcome back, {user.email}</h1>}
-        <div className="links">
-          <a
-            className="admin"
-            href={payloadConfig.routes.admin}
-            rel="noopener noreferrer"
-            target="_blank"
+    <main className="
+      flex flex-col items-center justify-center
+      min-h-screen p-6
+      bg-white dark:bg-black
+      select-none"
+    >
+
+      <h2 className="
+        max-w-md w-full
+        py-2
+        text-3xl
+        text-black dark:text-white"
+      >
+        rxndxm
+      </h2>
+
+      <div className="flex flex-col w-full max-w-md gap-1">
+        {homePageData.links?.map((link, index) => (
+          <a 
+            key={index} 
+            href={link.dest}
+            className="
+            w-full text-start
+            text-lg
+            bg-white dark:bg-black
+            hover:bg-black dark:hover:bg-white
+            active:bg-black dark:active:bg-white
+            text-black dark:text-white
+            hover:text-white dark:hover:text-black
+            active:text-white dark:active:text-black"
           >
-            Go to admin panel
+            {link.title}
           </a>
-          <a
-            className="docs"
-            href="https://payloadcms.com/docs"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Documentation
-          </a>
-        </div>
+        ))}
       </div>
-      <div className="footer">
-        <p>Update this page by editing</p>
-        <a className="codeLink" href={fileURL}>
-          <code>app/(frontend)/page.tsx</code>
-        </a>
-      </div>
-    </div>
-  )
+      
+    </main>
+  );
 }
