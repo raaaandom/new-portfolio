@@ -26,8 +26,6 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       `}
       >
 
-        <div className="fixed inset-0 z-[-1] bg-grid-pattern pointer-events-none" />
-
         <main>{children}</main>
       </body>
     </html>

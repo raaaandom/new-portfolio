@@ -45,7 +45,6 @@ export default async function DynamicLinkPage({ params }: { params: { slug: stri
             className="
             w-full text-start
             text-lg
-            bg-white dark:bg-black
             hover:bg-black dark:hover:bg-white
             hover:font-bold
             active:bg-black dark:active:bg-white
