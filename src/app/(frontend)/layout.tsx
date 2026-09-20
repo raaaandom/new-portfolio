@@ -5,8 +5,8 @@ import { Metadata } from 'next'
 import { JetBrains_Mono } from 'next/font/google';
 
 export const metadata: Metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+  description: 'random\'s blog',
+  title: '.\'-.; rnd \'°*',
 }
 
 const jetbrainsMono = JetBrains_Mono({ 
