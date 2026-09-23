@@ -1,4 +1,5 @@
 import { getPayload } from 'payload';
+import { RichText } from '@payloadcms/richtext-lexical/react';
 import configPromise from '@payload-config';
 import { notFound } from 'next/navigation';
 
@@ -14,10 +15,10 @@ function HeadingSection({ heading }: { heading: string }) {
   );
 }
 
-function ContentSection({ text }: { text: string }) {
+function ContentSection({ text }: { text: Parameters<typeof RichText>[0]['data'] }) {
   return (
-    <div className="w-full max-w-3xl mx-auto whitespace-pre-wrap text-lg mt-6">
-      {text}
+    <div className="w-full max-w-3xl mx-auto text-lg mt-6">
+      <RichText data={text} />
     </div>
   );
 }

@@ -10,7 +10,7 @@ const HeadingBlock: Block = {
 const ContentBlock: Block = {
   slug: 'content',
   fields: [
-    { name: 'text', type: 'textarea', required: true },
+    { name: 'text', type: 'richText', required: true },
   ],
 };
 
